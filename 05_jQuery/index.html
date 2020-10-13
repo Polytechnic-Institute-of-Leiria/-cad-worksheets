@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Home Sweet Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link disabled" href="#">Dashboard <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="history.html">History</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+
+          <section class="card">
+            <h2 class="card-header">
+                Weather
+            </h2>
+            <div class="card-body">
+              <div class="container">
+                <div class="row">
+                  <div class="col-1">
+                    <i class="fas fa-temperature-high"></i>
+                  </div>
+                  <div class="col-7">Temperature</div>
+                  <div class="col-">
+                    <span id="weather-temp">--</span> ºC
+                  </div>                
+                </div>
+                <div class="row">
+                  <div class="col-1"></div>
+                  <div class="col-7">Maximum</div>
+                  <div class="col-">
+                    <span id="weather-max-temp">--</span> ºC
+                  </div>                
+                </div>
+                <div class="row">
+                  <div class="col-1"></div>
+                  <div class="col-7">Minimum</div>
+                  <div class="col-">
+                    <span id="weather-min-temp">--</span> ºC
+                  </div>                
+                </div>
+
+                <div class="row">                  
+                  <div class="col-1">
+                    <div id="bulb"><i class="fa fa-tint"></i></div>
+                  </div>
+                  <div class="col-7">Humidity</div>
+                  <div class="col-">
+                    <span id="weather-humidity">-- %</span>
+                  </div>
+                </div>
+
+                <div class="row">                  
+                  <div class="col-1">
+                    <div id="bulb"><i class="fa fa-sun"></i></div>
+                  </div>
+                  <div class="col-7">Sunrise</div>
+                  <div class="col-">
+                    <span id="weather-sunrise">--:--</span>
+                  </div>
+                </div>
+
+                <div class="row">                  
+                  <div class="col-1">
+                    <div id="bulb"><i class="fa fa-moon"></i></div>
+                  </div>
+                  <div class="col-7">Sunset</div>
+                  <div class="col-">
+                    <span id="weather-sunset">--:--</span>
+                  </div>
+                </div>
+
+                <div class="row">                  
+                  <div class="col-1"></div>
+                  <div class="col-7">Updated at</div>
+                  <div class="col-">
+                    <span id="weather-updated">--:--</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+        </div>
+
+        <div class="col-sm">
+
+          <section class="card">
+            <h2 class="card-header">
+                Kitchen
+            </h2>
+            <div class="card-body">
+              <div class="container">
+                <div class="row">
+                  <div class="col-1">
+                    <i class="fas fa-temperature-high"></i>
+                  </div>
+                  <div class="col-7">
+                    Temperature <span id="temp-indicator">21.6</span> ºC
+                    <div class="small">5  minutes ago</div>
+                  </div>
+                  <div class="col-">
+                    <a href="#" id="temp-toggle">
+                      <span class="action-icon"><i class="fas fa-toggle-off"></i></span>
+                    </a>
+                  </div>                
+                </div>
+                <div class="row">                  
+                  <div class="col-1">
+                    <div id="bulb"><i class="far fa-lightbulb"></i></div>
+                  </div>
+                  <div class="col-7">
+                    Lights Off
+                    <div class="small">10 minutes ago</div>
+                  </div>
+                  <div class="col-">
+                    <a href="#" id="light-toggle">
+                      <span class="action-icon"><i class="fas fa-toggle-off"></i></span>
+                    </a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-1">
+                  </div>
+                  <div class="col-7">
+                    West Window Open
+                    <div class="small">15 minutes ago</div>
+                  </div>
+                  <div class="col-"></div>
+                </div>
+                <div class="row">
+                  <div class="col-1">
+                  </div>
+                  <div class="col-7">
+                    North Window Open
+                    <div class="small">15 minutes ago</div>
+                  </div>
+                  <div class="col-"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </div>
+        <div class="col-sm">
+
+          <section class="card">
+            <h2 class="card-header">
+              Living Room
+            </h2>
+            <div class="card-body">
+              <div class="container">
+                <div class="row">
+                  <div class="col-1">
+                    <i class="fas fa-temperature-high"></i>
+                  </div>
+                  <div class="col-6">
+                    Temperature 22.6 ºC 
+                  </div>
+                  <div class="col small">
+                    5 minutes ago
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-1">
+                    <i class="far fa-lightbulb"></i>
+                  </div>
+                  <div class="col-6">
+                    Ceiling Lights Off
+                  </div>
+                  <div class="col small">7 minutes ago</div>
+                </div>
+                <div class="row">
+                  <div class="col-1">
+                    <i class="far fa-lightbulb"></i>
+                  </div>
+                  <div class="col-6">
+                    Ambient Lights <span class="device-on">On</span>
+                  </div>
+                  <div class="col small">7 minutes ago</div>
+                </div>
+                <div class="row">
+                  <div class="col-1">
+                  </div>
+                  <div class="col-6">
+                    Ambient Music On 
+                  </div>
+                  <div class="col small">17 minutes ago</div>
+                </div>
+              </div>
+            </div> 
+          </section>
+
+        </div>
+      </div>
+    </div>
+
+
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="js/jquery-3.5.1.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script src="js/index.js"></script>
+  </body>
+</html>
