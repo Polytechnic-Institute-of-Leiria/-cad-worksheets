@@ -16,28 +16,32 @@ $(function () {
   const lightToggle = $("#light-toggle");
   const lightTime = $("#light_time")
 
+  function toggleAndSaveStatus(name, obj) {
+    obj.status = !obj.status
+    obj.time = new Date();
+    localStorage.setItem(name + "_status", obj.status);
+    localStorage.setItem(name + "_time", obj.time.toISOString());
+    sendToCloud({"kitchen": kitchen});
+  }
 
   let temperature = null; 
   function toggleButton(e) {
     if (this == tempToggle.get(0)) {
-      kitchen.temp.status = !kitchen.temp.status
-      kitchen.temp.time = new Date();
       tempTime.text('just now');
-      localStorage.setItem("kitchen_temp_status", kitchen.temp.status);
-      localStorage.setItem("kitchen_temp_time", kitchen.temp.time.toISOString());
+      toggleAndSaveStatus("kitchen_temp", kitchen.temp);
     }
     else if (this == lightToggle.get(0)) {
-      kitchen.light.status = !kitchen.light.status;
-      kitchen.light.time = new Date();
       lightTime.text('just now');
-      localStorage.setItem("light_temp_status", kitchen.light.status);
-      localStorage.setItem("light_temp_time", kitchen.light.time.toISOString());
+      toggleAndSaveStatus("kichen_light", kitchen.light);
+      // kitchen.light.status = !kitchen.light.status;
+      // kitchen.light.time = new Date();
+      // localStorage.setItem("light_temp_status", kitchen.light.status);
+      // localStorage.setItem("light_temp_time", kitchen.light.time.toISOString());
     }
     const j = $(this).find("i");
     j.toggleClass("fa-toggle-off");
     j.toggleClass("fa-toggle-on");
 
-    sendToCloud({"kitchen": kitchen});
     e.preventDefault();
   };
 
@@ -95,22 +99,32 @@ $(function () {
 
 
   function loadInitialValues() {
-    kitchen.temp.status = Boolean(localStorage.getItem("kitchen_temp_status"));
+    kitchen.temp.status = localStorage.getItem("kitchen_temp_status") === 'true';
+    const tempI = tempToggle.find("i");
+    if (kitchen.temp.status != tempI.hasClass("fa-toggle-on")) {
+      tempI.toggleClass("fa-toggle-on");
+      tempI.toggleClass("fa-toggle-off");
+    }
+
     let storedTime = localStorage.getItem("kitchen_temp_time");
     if (storedTime) {
       kitchen.temp.time = new Date (storedTime);
     }
   
-    kitchen.light.status = Boolean (localStorage.getItem("light_temp_status"));
-    storedTime = localStorage.getItem("light_temp_time");
+    kitchen.light.status = localStorage.getItem("kichen_light_status") === 'true';
+    const lightI = lightToggle.find("i"); 
+    if (kitchen.light.status != lightI.hasClass("fa-toggle-on")) {
+      lightI.toggleClass("fa-toggle-on");
+      lightI.toggleClass("fa-toggle-off");
+    }
+
+    storedTime = localStorage.getItem("kichen_light_time");
     if (storedTime) {
       kitchen.light.time = new Date(storedTime);
     }
     updateKitchenTime(kitchen.temp.time, tempTime);
     updateKitchenTime(kitchen.light.time, lightTime);
   }
-
-  loadInitialValues();
 
   const firebaseURL = "https://ipleiria-marcelino.firebaseio.com/dad2020/​000.json"
 
@@ -125,6 +139,35 @@ $(function () {
     }
     )
   }
+
+  function loadFromCloud() {
+    $.ajax({
+      url: firebaseURL,
+      type: 'GET',
+      contentType: 'application/json',
+    }).done(function (data) {
+      kitchen = data.kitchen;
+      kitchen.temp.time = new Date(kitchen.temp.time);
+      kitchen.light.time = new Date(kitchen.light.time);
+      
+      const tempI = tempToggle.find("i");
+      if (kitchen.temp.status != tempI.hasClass("fa-toggle-on")) {
+        tempI.toggleClass("fa-toggle-on");
+        tempI.toggleClass("fa-toggle-off");
+      }
+      
+      const lightI = lightToggle.find("i"); 
+      if (kitchen.light.status != lightI.hasClass("fa-toggle-on")) {
+        lightI.toggleClass("fa-toggle-on");
+        lightI.toggleClass("fa-toggle-off");
+      }
+  
+      updateKitchenTime(kitchen.temp.time, tempTime);
+      updateKitchenTime(kitchen.light.time, lightTime);
+    }
+    )
+  }
+
 
 
   const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=leiria&appid=45560d6d409b8b4b31f5ff22a8f451aa";
@@ -171,6 +214,7 @@ $(function () {
   }
 
   fetchWeather();
-
+  loadInitialValues();
+  loadFromCloud();
 
 });
