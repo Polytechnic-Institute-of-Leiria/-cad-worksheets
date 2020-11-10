@@ -55,12 +55,7 @@ $(function () {
     const bulbNode = $("#bulb i");
     bulbNode.toggleClass("far");
     bulbNode.toggleClass("fas");
-    if (bulbNode.css("color") == "rgb(255, 0, 0)" ) {
-      bulbNode.css("color", "rgb(0, 0, 0)");
-    }
-    else {
-      bulbNode.css("color", "rgb(255, 0, 0)");
-    }
+    bulbNode.toggleClass("redColor");
   }
 
   tempToggle.on ('click', toggleButton);
